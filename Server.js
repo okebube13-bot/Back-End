@@ -83,7 +83,7 @@ app.post(
 
       if (req.file) {
         const result = await cloudinary.uploader.upload(req.file.path, {
-          folder: "blogs", // optional folder in Cloudinary
+          folder: "blogs",
         });
         imageUrl = result.secure_url;
 
@@ -135,6 +135,10 @@ app.get("/posts", async (req, res) => {
     console.error(error);
     res.status(500).json({ err: "Failed to fetch blogs" });
   }
+});
+
+app.get("/about", (req, res) => {
+  res.render("Blog/About");
 });
 
 app.get("/posts/:id/edit", isAuthenticated, async (req, res) => {
