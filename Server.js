@@ -107,9 +107,14 @@ app.post(
     }
   }
 );
+
+app.get("/", (req, res) => {
+  res.redirect("/posts");
+});
+
 app.get("/posts", async (req, res) => {
   try {
-    const limit = 9; // blogs per page
+    const limit = 9;
     const page = parseInt(req.query.page) || 1;
 
     const allBlogs = await blog.countDocuments();
@@ -263,7 +268,7 @@ app.post("/search", async (req, res) => {
 });
 app.post("/view", async (req, res) => {
   try {
-    const { id } = req.body; // Get the post ID from form
+    const { id } = req.body;
     const singleBlog = await blog.findById(id);
 
     if (!singleBlog) {
