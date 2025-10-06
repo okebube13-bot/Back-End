@@ -186,12 +186,12 @@ app.delete("/posts/:id", isAuthenticated, async (req, res) => {
     const { id } = req.params;
     const delBlogs = await blog.findById(id);
 
-    // if (delBlogs.author.toString() !== req.session.userId) {
-    //   return res.status(403).send(`<script>
-    //       alert("Only blog users can delete their blogs");
-    //       window.location.href = "/posts";
-    //     </script>`);
-    // }
+    if (delBlogs.author.toString() !== req.session.userId) {
+      return res.status(403).send(`<script>
+          alert("Only blog users can delete their blogs");
+          window.location.href = "/posts";
+        </script>`);
+    }
 
     await blog.findByIdAndDelete(req.params.id);
     res.redirect("/posts");
