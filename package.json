@@ -21,10 +21,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "deploy:render": "node Proserver.js"
+    "deploy:render": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/x-alpha319/Back_end.git"
+  },
+  "bugs": {
+    "url": "https://github.com/x-alpha319/Back_end/issues"
+  },
+  "homepage": "https://github.com/x-alpha319/Back_end#readme"
 }
