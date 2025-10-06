@@ -50,7 +50,7 @@ app.use(async (req, res, next) => {
 });
 
 app.set("view engine", "ejs");
-
+app.set("views", path.join(__dirname, "Views"));
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("✅ Mongo connected successfully"))
@@ -65,7 +65,7 @@ function isAuthenticated(req, res, next) {
 
 app.get("/posts/new", isAuthenticated, async (req, res) => {
   try {
-    res.render("./Views/Blogs/newForm");
+    res.render("Blogs/newForm");
   } catch (err) {
     res.status(500).json({ err: "Failed to fetch blogs" });
   }
@@ -100,7 +100,7 @@ app.post(
 
       await newBlog.save();
 
-      res.render("./Views/Blogs/newBlogs", { blogs: [newBlog] });
+      res.render("Blogs/newBlogs", { blogs: [newBlog] });
     } catch (error) {
       console.error(error);
       res.status(500).json({ err: "Failed to post blog. Please try again" });
@@ -121,7 +121,7 @@ app.get("/posts", async (req, res) => {
       .skip((page - 1) * limit)
       .limit(limit);
 
-    res.render("./Views/Blogs/allBlogs", {
+    res.render("Blogs/allBlogs", {
       blogs,
       currentPage: page,
       totalPages: allPages,
@@ -146,7 +146,7 @@ app.get("/posts/:id/edit", isAuthenticated, async (req, res) => {
       `);
     }
 
-    res.render("./Views/Blogs/Editedblog", { blogs: singleBlog });
+    res.render("Blogs/Editedblog", { blogs: singleBlog });
   } catch (error) {
     res.status(500).json({ err: "Failed to fetch blog for editing" });
   }
