@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>New Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 min-h-screen py-8">
+    <div>
+        <h1 class="text-3xl text-center font-bold font text-gray-500">
+            SEARCH RESULTS:
+        </h1>
+    </div>
+    <div class="max-w-4xl mx-auto px-4">
+
+        <div class="space-y-6 mb-8">
+            <% if(blogs){ %>
+                <% blogs.forEach(blog=> { %>
+
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">
+                        <%= blog.title %>
+                    </h2>
+
+                    <% if (blog.imageUrl) { %>
+                        <img src="<%= blog.imageUrl %>" alt="Blog image"
+                            class="w-full h-64 object-cover rounded-lg mb-4 shadow-sm">
+                        <% } %>
+
+
+                            <p class="text-gray-600 mb-4 leading-relaxed">
+                                <%= blog.body %>
+                            </p>
+
+
+                            <div class="flex items-center text-gray-500 text-sm">
+                                <span class="font-medium">By <%= blog.Author %></span>
+                            </div>
+
+                            <% }) %>
+                                <% } else{ %>
+                                    <h1>No blogs with that title</h1>
+                                    <%}%>
+
+        </div>
+
+        <div class="text-center">
+            <a href="/posts"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 font-medium shadow-sm">
+                Back to All Blogs
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
